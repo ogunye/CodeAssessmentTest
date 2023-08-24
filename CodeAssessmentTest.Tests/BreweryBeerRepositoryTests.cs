@@ -55,7 +55,7 @@ namespace CodeAssessmentTest.Tests
             var brewery = new Brewery { Name = "Test Brewery" };
             var beer = new Beer { Name = "Test Beer" };
 
-            brewery.Beers = new List<Beer> { beer }; // Initialize the Beers property
+            brewery.Beers = new List<Beer> { beer }; 
 
             await context.Breweries.AddAsync(brewery);
             await context.Beers.AddAsync(beer);
@@ -65,8 +65,8 @@ namespace CodeAssessmentTest.Tests
             var result = await repository.GetAllBreweriesWithBeersAsync();
 
             // Assert
-            Assert.Single(result); // Check if there's a single brewery in the result
-            Assert.Single(result[0].Beers); // Check if there's a single beer associated with the brewery
+            Assert.Single(result); 
+            Assert.Single(result[0].Beers); 
             Assert.Equal("Test Beer", result[0].Beers[0].Name);
         }
 

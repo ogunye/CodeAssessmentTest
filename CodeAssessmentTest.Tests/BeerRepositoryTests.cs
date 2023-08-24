@@ -70,18 +70,20 @@ namespace CodeAssessmentTest.Tests
             {
                 new Beer { Name = "Beer 1", PercentageAlcoholVolume = 4.0m },
                 new Beer { Name = "Beer 2", PercentageAlcoholVolume = 5.5m },
-                new Beer { Name = "Beer 3", PercentageAlcoholVolume = 3.8m }
+                new Beer { Name = "Beer 3", PercentageAlcoholVolume = 6.0m },
+                new Beer { Name = "Beer 4", PercentageAlcoholVolume = 8.5m }
             };
 
             await context.Beers.AddRangeAsync(beers);
             await context.SaveChangesAsync();
 
             // Act
-            var result = await repository.GetBeersByAlcoholContentAsync(4.0m, 5.0m);
+            var result = await repository.GetBeersByAlcoholContentAsync(5.0m, 8.0m);
 
             // Assert
-            Assert.Single(result); 
-            Assert.Equal("Beer 2", result[0].Name);
+            Assert.Equal(2, result.Count); 
+            Assert.Contains(result, beer => beer.Name == "Beer 2");
+            Assert.Contains(result, beer => beer.Name == "Beer 3");
         }
 
     }

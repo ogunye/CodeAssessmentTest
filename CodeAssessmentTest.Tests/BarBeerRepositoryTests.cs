@@ -33,7 +33,7 @@ namespace CodeAssessmentTest.Tests
 
             // Assert
             Assert.Contains(beer, bar.Beers);
-            await context.SaveChangesAsync(); // Ensure changes are persisted
+            await context.SaveChangesAsync(); 
 
         }
     }
